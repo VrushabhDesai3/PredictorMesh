@@ -1,0 +1,405 @@
+{%  if user.is_authenticated %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PredictorMesh | Edit Profile</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik:300,400,500"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{%  static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{%  static 'css/animate.css' %}" />
+    <link rel="stylesheet" href="{%  static 'css/owl.carousel.min.css' %}" />
+
+    <link rel="stylesheet" href="{%  static 'fonts/ionicons/css/ionicons.min.css' %}" />
+    <link rel="stylesheet" href="{%  static 'fonts/fontawesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{%  static 'fonts/flaticon/font/flaticon.css' %}" />
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="{%  static 'css/style.css' %}" />
+    <style>
+    	input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+		  -webkit-appearance: none;
+		  margin: 0;
+		}
+
+		/* Firefox */
+		input[type=number] {
+		  -moz-appearance:textfield;
+		}
+		/* normal */
+		form input:not(:focus):invalid {
+		    border: 1px solid #ced4da;
+		}
+
+		/* normal */
+		form input:focus:invalid {
+		    border: 1px solid #ced4da !important;
+		}
+
+		/* error */
+		form input.error-input:invalid {
+		    border: 1px solid red;
+		}
+		input:valid {
+			color: black;
+			border-color: palegreen;
+		}
+		.py-2::-webkit-input-placeholder {
+		    font-weight: lighter;
+		    color:#AFB2B3;
+		}
+		.py-2::-moz-placeholder {
+		    font-weight: lighter;
+		    color:#AFB2B3;
+		}
+		.py-2::-ms-input-placeholder {
+		    font-weight: lighter;
+		    color:#AFB2B3;
+		}
+		label {
+			font-size: 15px;
+		}
+    </style>
+  </head>
+  <body onload="marksSelection()">
+    <header role="banner">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand absolute" href="/">PredictorMesh</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/colleges">Colleges</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="courses.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="/courses/data-science-bachelors">Data Science(Bachelors)</a>
+                  <a class="dropdown-item" href="/courses/computer-engineering-bachelors">Computer Engineering(Bachelors)</a>
+                  <a class="dropdown-item" href="/courses/computer-science-masters">Computer Science(Masters)</a>
+                  <a class="dropdown-item" href="/courses/data-science-masters">Data Science(Masters)</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav absolute-right">
+                {%  if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="courses.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hello, {{ user.first_name }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        {% if profiles.isProfile %}
+                        <a class="dropdown-item" href="/colleges/">Recommended Universities</a>
+                        {% endif %}
+                      <a class="dropdown-item" href="/profile">Edit Profile</a>
+                      <a class="dropdown-item" href="/accounts/logout">Logout</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="courses.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login/Register</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                      <a class="dropdown-item" href="/accounts/login">Login</a>
+                      <a class="dropdown-item" href="/accounts/register">Register</a>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- END header -->
+
+    <section
+      class="site-hero site-sm-hero overlay"
+      data-stellar-background-ratio="0.5"
+      style="background-image: url({% static 'images/big_image_2.jpg' %});"
+    >
+      <div class="container">
+        <div
+          class="row align-items-center justify-content-center site-hero-sm-inner"
+        >
+          <div class="col-md-7 text-center">
+            <div class="mb-5 element-animate">
+              <h1 class="mb-2">Register</h1>
+              <p class="bcrumb">
+                <a href="index.html">Home</a>
+                <span class="sep ion-android-arrow-dropright px-2"></span>
+                <span class="current">Register</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-7">
+            <div class="form-wrap">
+              <h2 style="font-weight: bolder;">Build a Profile</h2>
+              <hr />
+              <form action="/profile/" method="post" id="profile">
+                  {% csrf_token %}
+                <h6>Under Graduate Details:</h6>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label for="name">College Name</label>
+                    <input type="text" value="{{ profile.clgName }}" placeholder="Alpha College" name="clgName" class="form-control py-2" required />
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="name">Course</label>
+                    <input type="texr" value="{{ profile.course }}" placeholder="Information Technology" name="course" class="form-control py-2 " required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label for="name">Backlogs</label>
+                    <input type="number" value="{{ profile.backlogs }}" placeholder="0" name="backlogs" class="form-control py-2" required />
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="name">Aggregate Marks(CGPA)</label>
+                    <div class="input-group">
+					    <div class="input-group addon" style="width:150px">
+					      <input type="number" class="form-control py-2" name="CGPA" value="{{ profile.ugMarks }}" placeholder="7.5" min="0" max="10" step=".01" required style="letter-spacing: 3px">
+					      <span class="input-group-addon ml-2" id="basic-addon1" style="font-size: 20px;border: 1px solid grey:"> / 10.00</span>
+					    </div>
+					</div>
+                  </div>
+                </div>
+                <hr />
+                <h6>Test Scores:</h6>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label for="name">Exam</label>
+                    <select name="examName" id="mySelect" onmousedown="marksSelection()" class="form-control py-2" style="width: 100%;" autofocus>
+                        {% if profile.examName %}
+                            <option value="{{profile.examName}}" selected disabled>{{profile.examName}}</option>
+                        {% endif %}
+                        <hr>
+                      <option value="TOEFEL">TOEFEL</option>
+                      <option value="IELTS">IELTS</option>
+                      <option value="PTE">PTE</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="name">Score</label>
+                    <div class="input-group">
+					    <div class="input-group addon" style="width:150px">
+					      <input type="number" value="{{ profile.examScore }}" class="form-control py-2" step=".1" name="examScore" placeholder="7.5" id="mark" required style="letter-spacing: 3px">
+					      <span class="input-group-addon ml-2" id="selectedMarks" style="font-size: 20px;border: 1px solid grey:"> / 9.0</span>
+					    </div>
+					</div>
+                  </div>
+                </div>
+                <hr />
+                <h6>Work Experience:</h6>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <label for="exp">Experience(Months)</label>
+                    <input type="number" value="{{ profile.experience }}" name="experience" id="exp" class="form-control py-2" required />
+                  </div>
+              	</div>
+              	<h6>Papers:</h6>
+              	<div class="row">
+              		<div class="col-md-12 form-group">
+	                  <label for="name">Technical papers published:</label>
+	                  	<div class="paperChecked" id="paperChecked">
+	                  		<select name="paperLevel" id="paperLevel" class="form-control py-2">
+                                {% if profile.examName %}
+                                    <option value="{{profile.paperLevel}}" selected disabled>{{profile.paperLevel}}</option>
+                                {% endif %}
+                                <option value="None">None</option>
+								<option value="Local">Local</option>
+								<option value="National">National</option>
+								<option value="International">International</option>
+		                    </select>
+	                  	</div>
+                	</div>
+                </div>
+                <hr />
+
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <input
+                      type="submit"
+                      value="Save"
+                      class="btn btn-primary px-5 py-2"
+                    />
+                  </div>
+                    {% if profile.isProfile %}
+                    <div class="col-md-6 form-group" style="color: red; font-size: larger;font-weight: bolder;">
+                        Score: {{ profile.score|floatformat:2}}%
+                    </div>
+                    {% endif %}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <h3>PredictorMesh</h3>
+            <p>PredictorMesh is planned to use bleeding-edge machine learning technology to predict colleges most likely to get admission in, for a student.</p>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <h3 class="heading">Quick Link</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="list-unstyled">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/About">About Us</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="list-unstyled">
+                  <li><a href="/colleges">Universities</a></li>
+                  <li><a href="/Contact">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <h3 class="heading">Contact Information</h3>
+            <div class="block-23">
+              <ul>
+                <li><span class="icon ion-android-pin"></span><span class="text">Beside Lincon Polymers At Khatraj Kalol Road, Gujarat 382721</span></li>
+                <li><a href="#"><span class="icon ion-ios-telephone"></span><span class="text">+91 7567467282</span></a></li>
+                <li><a href="#"><span class="icon ion-android-mail"></span><span class="text">admin@admin.com</span></a></li>
+                <li><span class="icon ion-android-time"></span><span class="text">Monday &mdash; Friday 9:00am - 3:45pm</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-12 text-center copyright">
+
+            <p class="float-md-left"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy; Vrushabh Desai
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            <p class="float-md-right">
+              <a href="https://www.facebook.com/vrushabh.desai3" class="fa fa-facebook p-2"></a>
+              <a href="https://twitter.com/vrushabh_desai3" class="fa fa-twitter p-2"></a>
+              <a href="https://in.linkedin.com/in/vrushabh-desai-8287b416a" class="fa fa-linkedin p-2"></a>
+              <a href="https://www.instagram.com/vd0312/" class="fa fa-instagram p-2"></a>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END footer -->
+
+    <!-- loader -->
+    <div id="loader" class="show fullscreen">
+      <svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214" />
+      </svg>
+    </div>
+
+    <script src="{%  static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{%  static 'js/jquery-migrate-3.0.0.js' %}"></script>
+    <script src="{%  static 'js/popper.min.js' %}"></script>
+    <script src="{%  static 'js/bootstrap.min.js' %}"></script>
+    <script src="{%  static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{%  static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{%  static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{%  static 'js/jquery.animateNumber.min.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+    	document.querySelectorAll("#profile input").forEach(function(element) {
+		    element.addEventListener('blur', function() {
+		        // if input field passes validation remove the error class, else add it
+		        if(this.checkValidity())
+		            this.classList.remove('error-input');
+		        else
+		            this.classList.add('error-input');
+		    });
+		});
+
+		/* submit event on form */
+		document.querySelector("#profile").addEventListener('submit', function(e) {
+		    // if form has not passed validation
+		    if(!this.checkValidity()) {
+		        // check validation for each input field inside the form
+		        // if input field is valid then remove the error class, else add it
+		        this.querySelectorAll("input").forEach(function(element) {
+		            if(element.checkValidity())
+		                element.classList.remove('error-input');
+		            else
+		                element.classList.add('error-input');
+		        });
+
+		        alert('Error');
+		        e.preventDefault();
+		    }
+		});
+		function marksSelection() {
+			var x = document.getElementById("mySelect");
+			var i = x.selectedIndex;
+			var y = document.getElementById("selectedMarks");
+			// alert(x.value);
+			if( x.value == 'IELTS') {
+				var m = document.getElementById("mark");
+				setAttributes(m, {"min":"0","max":"9"});
+				y.innerHTML = ' / 9.0';
+				m.placeholder = "7.5";
+				m.max = '9';
+			}
+			if( x.value == 'TOEFEL') {
+				var m = document.getElementById("mark");
+				setAttributes(m, {"min":"0","max":"120"});
+				y.innerHTML = ' /120.0';
+				m.placeholder = "100.0";
+			}
+			if( x.value == 'PTE') {
+				var m = document.getElementById("mark");
+				setAttributes(m, {"min":"10","max":"90"});
+				y.innerHTML = ' / 90.0';
+				m.placeholder = "75.0";
+			}
+
+		}
+		function setAttributes(el, attrs) {
+		  for(var key in attrs) {
+		    el.setAttribute(key, attrs[key]);
+		  }
+		}
+    </script>
+  </body>
+</html>
+{% endif %}

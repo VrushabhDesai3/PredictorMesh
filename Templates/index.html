@@ -1,0 +1,505 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>PredictorMesh | Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    
+    <header role="banner">
+     
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand absolute" href="/">PredictorMesh</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/colleges">Colleges</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="/courses/data-science-bachelors">Data Science(Bachelors)</a>
+                  <a class="dropdown-item" href="/courses/computer-engineering-bachelors">Computer Engineering(Bachelors)</a>
+                  <a class="dropdown-item" href="/courses/computer-science-masters">Computer Science(Masters)</a>
+                  <a class="dropdown-item" href="/courses/data-science-masters">Data Science(Masters)</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav absolute-right">
+                {%  if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle notification" href="courses.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <span> Hello, {{ user.first_name }}</span>
+                        {% if notification %}
+                        <span class="badge">{{ notification }}</span>
+                        {% endif %}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        {% if profiles.isProfile %}
+                        <a class="dropdown-item" href="/colleges/rec">Recommended Universities</a>
+                        {% endif %}
+                      <a class="dropdown-item" href="/profile">Edit Profile</a>
+                      <a class="dropdown-item" href="/accounts/logout">Logout</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="courses.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login/Register</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                      <a class="dropdown-item" href="/accounts/login">Login</a>
+                      <a class="dropdown-item" href="/accounts/register">Register</a>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- END header -->
+
+    <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url({% static 'images/big_image_2.jpg' %});">
+      <div class="container">
+        <div class="row align-items-center justify-content-center site-hero-inner">
+          <div class="col-md-10">
+  
+            <div class="mb-5 element-animate">
+              <div class="block-17">
+                <h2 class="heading text-center mb-4">Find a College or University That Suits You</h2>
+              <center>
+                <form action="/colleges/" method="POST" class="d-block d-lg-flex mb-4" style="width: 50%">
+                    {% csrf_token %}
+                  <div class="fields d-block d-lg-flex" >
+                    <div class="textfield-search" style="width: 100%"><input type="text" class="form-control" name="search" placeholder="Keyword search..."></div>
+
+                  </div>
+                  <input type="submit" class="search-submit btn btn-primary" value="Search">  
+                </form>
+              </center>
+                <p class="text-center mb-5">We have more than 100 colleges to find the best for you</p>
+                  {%  if user.is_authenticated %}
+                    {% else %}
+                  <p class="text-center"><a href="accounts/register" class="btn py-3 px-5">Register Now</a></p>
+                  {% endif %}
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+    <section class="site-section element-animate">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 order-md-2">
+            <div class="block-16">
+              <figure>
+                <img src="{% static 'images/homePage.jpg' %}" alt="Image placeholder" class="img-fluid">
+              </figure>
+            </div>
+          </div>
+          <div class="col-md-6 order-md-1">
+
+            <div class="block-15">
+              <div class="heading">
+                <h2>Welcome to PredictorMesh</h2>
+              </div>
+              <div class="text mb-5">
+              <p>PredictorMesh is planned to use bleeding-edge machine learning technology to predict colleges most likely to get admission in, for a student.</p>
+              </div>
+              <p><a href="/about/" class="btn btn-primary reverse py-2 px-4">Read More</a></p>
+              
+            </div>
+
+          </div>
+          
+        </div>
+
+      </div>
+    </section>
+    <!-- END section -->
+
+{#    <section class="site-section pt-3 element-animate">#}
+{#      <div class="container">#}
+{#        <div class="row">#}
+{#          <div class="col-md-6 col-lg-3">#}
+{#            <div class="media block-6 d-block">#}
+{#              <div class="icon mb-3"><span class="flaticon-book"></span></div>#}
+{#              <div class="media-body">#}
+{#                <h3 class="heading">Knowledge is power</h3>#}
+{#                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit mess.</p>#}
+{#              </div>#}
+{#            </div> #}
+{#          </div>#}
+{#          <div class="col-md-6 col-lg-3">#}
+{#            <div class="media block-6 d-block">#}
+{#              <div class="icon mb-3"><span class="flaticon-student"></span></div>#}
+{#              <div class="media-body">#}
+{#                <h3 class="heading">Senior High School</h3>#}
+{#                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit mess.</p>#}
+{#              </div>#}
+{#            </div> #}
+{#          </div>#}
+{#          #}
+{#          <div class="col-md-6 col-lg-3">#}
+{#            <div class="media block-6 d-block">#}
+{#              <div class="icon mb-3"><span class="flaticon-diploma"></span></div>#}
+{#              <div class="media-body">#}
+{#                <h3 class="heading">College of Arts &amp; Sciences</h3>#}
+{#                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit mess.</p>#}
+{#              </div>#}
+{#            </div> #}
+{#          </div>#}
+{#          <div class="col-md-6 col-lg-3">#}
+{#            <div class="media block-6 d-block">#}
+{#              <div class="icon mb-3"><span class="flaticon-professor"></span></div>#}
+{#              <div class="media-body">#}
+{#                <h3 class="heading">Unmatched Proffessor</h3>#}
+{#                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit mess.</p>#}
+{#              </div>#}
+{#            </div> #}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </section>#}
+    <!-- END section -->
+
+    <section class="site-section bg-light element-animate" id="section-counter">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <figure><img src="{% static 'images/img_2_b.jpg' %}" alt="Image placeholder" class="img-fluid"></figure>
+          </div>
+          <div class="col-lg-5 ml-auto">
+            <div class="block-15">
+              <div class="heading">
+                <h2>Education is Life</h2>
+              </div>
+              <div class="text mb-5">
+                <p>Education consists of experience, environment, socialisation and communication.</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="block-18 d-flex align-items-center">
+                  <div class="icon mr-4">
+                    <span class="flaticon-student"></span>
+                  </div>
+                  <div class="text">
+                    <strong class="number" data-number="{{ users }}">0</strong>
+                    <span>Users</span>
+                  </div>
+                </div>
+
+                <div class="block-18 d-flex align-items-center">
+                  <div class="icon mr-4">
+                    <span class="flaticon-university"></span>
+                  </div>
+                  <div class="text">
+                    <strong class="number" data-number="{{ uni }}">0</strong>
+                    <span>Universities</span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="block-18 d-flex align-items-center">
+                  <div class="icon mr-4">
+                    <span class="flaticon-books"></span>
+                  </div>
+                  <div class="text">
+                    <strong class="number" data-number="93">0</strong><strong class="number">%</strong>
+                    <span>Correct Prediction</span>
+                  </div>
+                </div>
+
+                <div class="block-18 d-flex align-items-center">
+                  <div class="icon mr-4">
+                    <span class="flaticon-mortarboard"></span>
+                  </div>
+                  <div class="text">
+                    <strong class="number" data-number="{{ course }}">0</strong>
+                    <span>Courses</span>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-5 element-animate">
+          <div class="col-md-7 text-center section-heading">
+            <h2 class="text-primary heading">Top 5 Universities</h2>
+            <p>You don’t go to university so you can punch a clock. You go to university so you can be in a position to make a difference.</p>
+            <p><a href="/colleges/" class="btn btn-primary py-2 px-4"><span class="ion-ios-book mr-2"></span>Enroll Now</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid block-11 element-animate">
+        <div class="nonloop-block-11 owl-carousel">
+            {% for clg in colleges %}
+
+          <div class="item">
+            <div class="block-19">
+                <a href="{{ clg.clgLink }}">
+                <figure>
+                  <img src="{{ clg.img.url }}" alt="Image" class="img-fluid" style="height: 318px;width: 525px">
+                </figure>
+                    </a>
+                <div class="text">
+                  <h2 class="heading"><a href="#">{{clg.name}}</a></h2>
+                  <p class="mb-4" style="height: 170px">{{ clg.desc }}</p>
+                  <div class="meta d-flex align-items-center">
+                    <div class="number">
+                      <span>{{clg.type}} University</span>
+                    </div>
+                    <div class="price text-right"><span>$ {{ clg.fees }}</span></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+            {% endfor %}
+        </div>
+      </div>
+
+      
+    </div>
+    <!-- END section -->
+
+
+    <div class="container site-section element-animate">
+      <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center section-heading">
+            <h2 class="text-primary heading">Teachers</h2>
+{#            <p>Everybody who is incapable of learning has taken to teaching.</p>#}
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <div class="block-2">
+            <div class="flipper">
+              <div class="front" style="background-image: url({% static 'images/sir1.jpg' %});">
+                <div class="box">
+                  <h2>Prof. Manoj Patel</h2>
+                  <p>Head of the Department-IT</p>
+                </div>
+              </div>
+              <div class="back">
+                <!-- back content -->
+                               {#                <blockquote>#}
+                  <p>
+                      <ul style="margin-top: 35px">
+                    <li>Advance .Net Technology</li>
+                  <li>Dot Net Technology</li>
+                  <li>Computer Programming And Utilization</li>
+                  <li>Data Structure</li>
+                  <li>Object Oriented Programming With C++</li>
+                  <li>Object Oriented Programming using JAVA</li>
+                  <li>Advanced Java</li>
+                  <li>Data Mining and Business Intelligence</li>
+                  <li>Iot And Applications</li>
+                </ul>
+                  </p>
+{#                </blockquote>#}
+                <div class="author d-flex">
+                  <div class="image mr-3 align-self-center">
+                    <img src="{% static 'images/sir1.jpg' %}" alt="">
+                  </div>
+                  <div class="name align-self-center">Prof. Manoj Patel <span class="position">Head of the Department-IT</span></div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- .flip-container -->
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="block-2 ">
+            <div class="flipper">
+              <div class="front" style="background-image: url({% static 'images/sir2.jpg' %});">
+                <div class="box">
+                  <h2>Prof. Amit Patel</h2>
+                  <p>Assistant Professor and Head</p>
+                </div>
+              </div>
+              <div class="back">
+                <!-- back content -->
+                {#                <blockquote>#}
+                  <p>
+                      <ul style="margin-top: 35px">
+                    <li>Computer Networks</li>
+                  <li>Database Management Systems</li>
+                  <li>Computer Organization</li>
+                  <li>Web Technology</li>
+                  <li>.Net Technology</li>
+                  <li>Distributed DBMS</li>
+                  <li>Artificial Intelligence</li>
+                  <li>Database Management Systems</li>
+                  <li>Computer Organization & Architecture</li>
+                </ul>
+                  </p>
+{#                </blockquote>#}
+                <div class="author d-flex">
+                  <div class="image mr-3 align-self-center">
+                    <img src="{% static 'images/sir2.jpg' %}" alt="">
+                  </div>
+                  <div class="name align-self-center">Prof. Amit Patel<span class="position">Assistant Professor and Head</span></div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- .flip-container -->
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="block-2">
+            <div class="flipper">
+              <div class="front" style="background-image: url({% static 'images/sir4.jpg' %});">
+                <div class="box">
+                  <h2>Prof. Harshit Vora</h2>
+                  <p>Assistant Professor</p>
+                </div>
+              </div>
+              <div class="back">
+                <!-- back content -->
+{#                <blockquote>#}
+                  <p>
+                      <ul style="margin-top: 35px">
+                    <li>Database Management Systems</li>
+                    <li>Computer Organization</li>
+                    <li>Computer Networks</li>
+                    <li>Analysis and Design of Algorithms</li>
+                  <li>Software Engineering</li>
+                  <li>Data Compression and data Retrival</li>
+                  <li>Distributed DBMS</li>
+                  <li>Artificial Intelligence</li>
+                  <li>Operating System and Virtualization</li>
+                </ul>
+                  </p>
+{#                </blockquote>#}
+                <div class="author d-flex">
+                  <div class="image mr-3 align-self-center">
+                    <img src="{% static 'images/sir4.jpg' %}" alt="">
+                  </div>
+                  <div class="name align-self-center">Prof. Harshit Vora<span class="position">Assistant Professor</span></div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- .flip-container -->
+        </div>
+      </div>
+    </div>
+    <!-- END .block-2 -->
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <h3>PredictorMesh</h3>
+            <p>PredictorMesh is planned to use bleeding-edge machine learning technology to predict colleges most likely to get admission in, for a student.</p>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <h3 class="heading">Quick Link</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="list-unstyled">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/About">About Us</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="list-unstyled">
+                  <li><a href="/colleges">Universities</a></li>
+                  <li><a href="/Contact">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <h3 class="heading">Contact Information</h3>
+            <div class="block-23">
+              <ul>
+                <li><span class="icon ion-android-pin"></span><span class="text">Beside Lincon Polymers At Khatraj Kalol Road, Gujarat 382721</span></li>
+                <li><a href="#"><span class="icon ion-ios-telephone"></span><span class="text">+91 7567467282</span></a></li>
+                <li><a href="mailto:admin@admin.com"><span class="icon ion-android-mail"></span><span class="text">admin@admin.com</span></a></li>
+                <li><span class="icon ion-android-time"></span><span class="text">Monday &mdash; Friday 9:00am - 3:45pm</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-12 text-center copyright">
+            
+            <p class="float-md-left"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy; Vrushabh Desai
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            <p class="float-md-right">
+              <a href="https://www.facebook.com/vrushabh.desai3" class="fa fa-facebook p-2"></a>
+              <a href="https://twitter.com/vrushabh_desai3" class="fa fa-twitter p-2"></a>
+              <a href="https://in.linkedin.com/in/vrushabh-desai-8287b416a" class="fa fa-linkedin p-2"></a>
+              <a href="https://www.instagram.com/vd0312/" class="fa fa-instagram p-2"></a>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END footer -->
+    
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+    
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
